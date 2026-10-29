@@ -1,7 +1,5 @@
-const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-
 export async function startAgent(input: string) {
-  const res = await fetch(`${BASE}/agent`, {
+  const res = await fetch("/api/agent", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +26,7 @@ export async function startAgent(input: string) {
 }
 
 export async function approveAgent(threadId: string, approve: boolean) {
-  const res = await fetch(`${BASE}/agent/approve`, {
+  const res = await fetch("/api/agent/approve", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

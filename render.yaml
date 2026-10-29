@@ -10,6 +10,8 @@ services:
     envVars:
       - key: OPENAI_API_KEY
         sync: false
+      - key: API_SHARED_SECRET
+        sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
       - key: CLIENT_ORIGIN

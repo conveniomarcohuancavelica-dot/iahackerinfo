@@ -9,8 +9,16 @@ Conecta primero este proyecto a un repositorio Git remoto accesible desde ambos 
    `render.yaml` en la raíz y propondrá el servicio `proyectoia-api`.
 2. Configura `OPENAI_API_KEY` como variable secreta en Render. No la guardes en
    el repositorio ni la compartas en chats.
-3. Conserva el valor de `OPENAI_MODEL` (`gpt-4o-mini`) o cámbialo según tu cuenta.
-4. Después del primer despliegue, copia la URL pública del servicio, por ejemplo
+3. Genera un secreto aleatorio de al menos 32 caracteres y guárdalo como
+   `API_SHARED_SECRET` en Render. Añade el mismo valor en Vercel como
+   `BACKEND_API_TOKEN`; no lo compartas ni lo pongas en el código. Puedes
+   generarlo localmente con:
+
+   ```powershell
+   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+   ```
+4. Conserva el valor de `OPENAI_MODEL` (`gpt-4o-mini`) o cámbialo según tu cuenta.
+5. Después del primer despliegue, copia la URL pública del servicio, por ejemplo
    `https://proyectoia-api.onrender.com`.
 
 El build valida los tipos de TypeScript, `tsx` ejecuta el backend y el servicio
@@ -20,15 +28,16 @@ expone `/health` para las comprobaciones de disponibilidad.
 
 1. Importa el mismo repositorio en Vercel y establece `client` como **Root
    Directory**.
-2. Configura `NEXT_PUBLIC_API_URL` con la URL pública del backend, sin `/` al
+2. Configura `BACKEND_API_URL` con la URL pública del backend, sin `/` al
    final, por ejemplo `https://proyectoia-api.onrender.com`.
-3. Despliega el proyecto y copia su dominio público.
+3. Configura `BACKEND_API_TOKEN` con el mismo secreto que `API_SHARED_SECRET`
+   en Render. Ambas variables se usan solo en el servidor; el navegador no recibe
+   el secreto ni contacta directamente al backend. Elimina `NEXT_PUBLIC_API_URL`
+   si quedó configurada de un intento anterior.
+4. Despliega el proyecto y conserva activada la protección de acceso de Vercel.
 
 ## Conectar el frontend y el backend
 
-En Render, configura `CLIENT_ORIGIN` con el origen exacto del frontend Vercel,
-por ejemplo `https://proyectoia-client.vercel.app` (sin `/` al final), y
-reinicia el servicio. Si cambias el dominio del frontend, actualiza este valor.
-
-`NEXT_PUBLIC_API_URL` se incorpora al compilar el frontend; si cambia la URL del
-backend, actualiza la variable en Vercel y vuelve a desplegar.
+El navegador usa rutas del mismo origen en Vercel. El servidor de Next.js reenvía
+las solicitudes al backend e incluye el secreto compartido; no se necesita
+exponer la clave de OpenAI ni habilitar CORS para el dominio de Vercel.
