@@ -1,4 +1,4 @@
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { z } from "zod";
 import { env } from "../../utils/env";
 import { State } from "../types";
@@ -10,9 +10,9 @@ const NotesSchema = z.object({
 type Notes = z.infer<typeof NotesSchema>;
 
 function makeModel() {
-  return new ChatOpenAI({
-    apiKey: env.OPENAI_API_KEY,
-    model: env.OPENAI_MODEL,
+  return new ChatGoogleGenerativeAI({
+    apiKey: env.GEMINI_API_KEY,
+    model: env.GEMINI_MODEL,
     temperature: 0.2,
   });
 }

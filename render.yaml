@@ -8,11 +8,11 @@ services:
     startCommand: npm start
     healthCheckPath: /health
     envVars:
-      - key: OPENAI_API_KEY
+      - key: GEMINI_API_KEY
         sync: false
       - key: API_SHARED_SECRET
         sync: false
-      - key: OPENAI_MODEL
-        value: gpt-4o-mini
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
       - key: CLIENT_ORIGIN
         sync: false

@@ -7,8 +7,9 @@ Conecta primero este proyecto a un repositorio Git remoto accesible desde ambos 
 
 1. En Render, crea un **Blueprint** e importa el repositorio. Render detectará
    `render.yaml` en la raíz y propondrá el servicio `proyectoia-api`.
-2. Configura `OPENAI_API_KEY` como variable secreta en Render. No la guardes en
-   el repositorio ni la compartas en chats.
+2. Crea una clave de Gemini en Google AI Studio y configúrala como variable
+   secreta `GEMINI_API_KEY` en Render. No la guardes en el repositorio ni la
+   compartas en chats.
 3. Genera un secreto aleatorio de al menos 32 caracteres y guárdalo como
    `API_SHARED_SECRET` en Render. Añade el mismo valor en Vercel como
    `BACKEND_API_TOKEN`; no lo compartas ni lo pongas en el código. Puedes
@@ -17,7 +18,8 @@ Conecta primero este proyecto a un repositorio Git remoto accesible desde ambos 
    ```powershell
    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```
-4. Conserva el valor de `OPENAI_MODEL` (`gpt-4o-mini`) o cámbialo según tu cuenta.
+4. El modelo predeterminado es `gemini-2.5-flash`; puedes cambiar `GEMINI_MODEL`
+   si tu cuenta tiene acceso a otro modelo compatible.
 5. Después del primer despliegue, copia la URL pública del servicio, por ejemplo
    `https://proyectoia-api.onrender.com`.
 

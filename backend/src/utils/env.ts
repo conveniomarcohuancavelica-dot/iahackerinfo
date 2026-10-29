@@ -4,9 +4,9 @@ dotenv.config();
 import { z } from "zod";
 
 const EnvSchema = z.object({
-  OPENAI_API_KEY: z.string().min(1, "Api key is needed"),
+  GEMINI_API_KEY: z.string().min(1, "GEMINI_API_KEY is required"),
   API_SHARED_SECRET: z.string().min(32, "API_SHARED_SECRET must be at least 32 characters"),
-  OPENAI_MODEL: z.string().default("gpt-4o-mini"),
+  GEMINI_MODEL: z.string().default("gemini-2.5-flash"),
   PORT: z.coerce.number().int().min(1).max(65535).default(5000),
   CLIENT_ORIGIN: z.string().url().default("http://localhost:3000"),
 });
@@ -20,9 +20,9 @@ if (!parsed.success) {
 const raw = parsed.data;
 
 export const env = Object.freeze({
-  OPENAI_API_KEY: raw.OPENAI_API_KEY,
+  GEMINI_API_KEY: raw.GEMINI_API_KEY,
   API_SHARED_SECRET: raw.API_SHARED_SECRET,
-  OPENAI_MODEL: raw.OPENAI_MODEL,
+  GEMINI_MODEL: raw.GEMINI_MODEL,
   PORT: raw.PORT,
   CLIENT_ORIGIN: raw.CLIENT_ORIGIN,
 });
