@@ -46,7 +46,7 @@ describe("Gemini-backed agent nodes", () => {
 
     expect(provider.ChatGoogleGenerativeAI).toHaveBeenCalledWith({
       apiKey: "validation-only-not-a-real-key",
-      model: "gemini-2.5-flash",
+      model: "gemini-3.8-flash",
       temperature: 0.2,
     });
     expect(result).toEqual({ steps, status: "planned" });
@@ -66,7 +66,7 @@ describe("Gemini-backed agent nodes", () => {
 
     expect(provider.ChatGoogleGenerativeAI).toHaveBeenCalledWith({
       apiKey: "validation-only-not-a-real-key",
-      model: "gemini-2.5-flash",
+      model: "gemini-3.8-flash",
       temperature: 0.2,
     });
     expect(result).toEqual({

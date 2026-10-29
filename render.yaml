@@ -13,6 +13,6 @@ services:
       - key: API_SHARED_SECRET
         sync: false
       - key: GEMINI_MODEL
-        value: gemini-2.5-flash
+        value: gemini-3.8-flash
       - key: CLIENT_ORIGIN
         sync: false

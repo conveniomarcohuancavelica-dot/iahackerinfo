@@ -18,7 +18,7 @@ Conecta primero este proyecto a un repositorio Git remoto accesible desde ambos 
    ```powershell
    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```
-4. El modelo predeterminado es `gemini-2.5-flash`; puedes cambiar `GEMINI_MODEL`
+4. El modelo predeterminado es `gemini-3.8-flash`; puedes cambiar `GEMINI_MODEL`
    si tu cuenta tiene acceso a otro modelo compatible.
 5. Después del primer despliegue, copia la URL pública del servicio, por ejemplo
    `https://proyectoia-api.onrender.com`.
@@ -42,4 +42,4 @@ expone `/health` para las comprobaciones de disponibilidad.
 
 El navegador usa rutas del mismo origen en Vercel. El servidor de Next.js reenvía
 las solicitudes al backend e incluye el secreto compartido; no se necesita
-exponer la clave de OpenAI ni habilitar CORS para el dominio de Vercel.
+exponer la clave de Gemini ni habilitar CORS para el dominio de Vercel.
