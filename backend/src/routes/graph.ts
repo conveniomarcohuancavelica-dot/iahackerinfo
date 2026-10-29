@@ -53,10 +53,11 @@ router.post("/", async (req, res) => {
       status: "error",
       error: "Some error occured",
     });
-  } catch (e) {
+  } catch (error) {
+    console.error("Agent run failed.", error);
     return res.status(500).json({
       status: "error",
-      error: "Some error occured",
+      error: "Agent run failed. Check the backend logs for details.",
     });
   }
 });
@@ -75,10 +76,11 @@ router.post("/approve", async (req, res) => {
 
     const final = await resumeAgentRun({ threadId, approve });
     return res.json({ status: "ok", data: { kind: "final", final } });
-  } catch (e) {
+  } catch (error) {
+    console.error("Agent approval failed.", error);
     return res.status(500).json({
       status: "error",
-      error: "Some error occured",
+      error: "Agent approval failed. Check the backend logs for details.",
     });
   }
 });
